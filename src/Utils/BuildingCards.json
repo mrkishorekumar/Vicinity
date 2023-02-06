@@ -1,0 +1,38 @@
+[
+    {
+        "buildingImage" : "https://lh3.googleusercontent.com/p/AF1QipNUs2Tqc3WovFs2R6mOCs0XGiExJMo0stAEPj7m=s680-w680-h510",
+        "buildingName" : "PSG Hospitals",
+        "buildingDescription" : "PSG Hospitals provides total health care to its patients, with the highest levels of skill, professionalism, and ethical practice, leading to their effective care and treatment at affordable costs.",
+        "buildingId" : ""
+    },
+    {
+        "buildingImage" : "https://lh3.googleusercontent.com/p/AF1QipPBHdH-PDCG891h5XNH2wURdOKIEbnaAv66ICci=s680-w680-h510",
+        "buildingName" : "Brookefields Mall",
+        "buildingDescription" : "Brookefields is a shopping mall located on Brookebond Road (Krishnasamy Road) in Coimbatore, India. It was opened in May 2009. The mall has outlets from major clothing and apparel brands.",
+        "buildingId" : ""
+    },
+    {
+        "buildingImage" : "https://th-i.thgim.com/public/incoming/op30zy/article65670531.ece/alternates/LANDSCAPE_1200/9869_18_11_2021_14_31_15_1_PSX_20211118_142857.JPG",
+        "buildingName" : "Isha Yoga",
+        "buildingDescription" : "Isha Foundation is a nonprofit, spiritual organisation founded in 1992, Tamil Nadu, India, by Sadhguru Jaggi Vasudev. It hosts the Isha Yoga Centre, which offers yoga programs under the name Isha Yoga. ",
+        "buildingId" : ""
+    },
+    {
+        "buildingImage" : "https://lh3.googleusercontent.com/p/AF1QipNTy6d6HFt8jQqGDMPloxOfzd-tmR3vTIdC-_iN=s680-w680-h510",
+        "buildingName" : "SRK Miraj cinemas",
+        "buildingDescription" : "Srk Miraj Cinemas! Book online movie tickets for Latest Hindi, English, Tamil, Telugu, Malayalam, Kannada movies in Srk Miraj Cinemas. Check out latest movies playing and show times at SRK Miraj Cinemas: Coimbatore and other nearby theatres in your city. ",
+        "buildingId" : ""
+    },
+    {
+        "buildingImage" : "https://www.collegebatch.com/static/clg-gallery/kumaraguru-college-of-technology-coimbatore-215070.jpg",
+        "buildingName" : "Kumaraguru College of Technology",
+        "buildingDescription" : "Kumaraguru College of Technology, Coimbatore is a private Engineering College started in 1984 as a part of the vision of Ramanandha Adigalar Foundation, a charitable educational trust of Sakthi Group.",
+        "buildingId" : ""
+    },
+    {
+        "buildingImage" : "https://res.cloudinary.com/simplotel/image/upload/x_0,y_0,w_1422,h_800,r_0,c_crop,q_80,fl_progressive/w_825,f_auto,c_fit/black-thunder---water-theme-park/Black_Thunder_Water_Theme_Park,_Dragon_Coaster_,__Black_Thunder_",
+        "buildingName" : "Black Thunder",
+        "buildingDescription" : "Asia’s No.1 water Theme Park. Nestled in the foothills of the scenic Nilgiri Hills, this ultimate holiday destination offers you a variety of fabulous water rides, mind-boggling dry rides, boating, mud karting, leisure hotel, a resort and much more. ",
+        "buildingId" : ""
+    }
+]
