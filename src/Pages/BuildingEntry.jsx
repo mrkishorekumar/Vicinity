@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import Logo from '../assets/images/vicinity.svg'
 import Footer from '../Components/Footer'
 import Navbar from '../Components/Navbar'
 
@@ -62,11 +64,18 @@ const BuildingEntry = () => {
         <>
             <Navbar />
             <form className='container-xl my-5' onSubmit={handleSubmit}>
-
+            <div>
+                <Link to="/"><img className="d-block mx-auto mb-2" src={Logo} alt="u-rl Logo" width="72"
+                    height="57" /></Link>
+            </div>
+            <div className="mb-2 text-center">
+                <h3>Add your Building</h3>
+            </div>
                 <div className="mb-3">
                     <label className="form-label">Name</label>
                     <input
                         name='name'
+                        required
                         value={data.name}
                         onChange={(e) => setData({ ...data, [e.target.name]: e.target.value })}
                         placeholder='Mall, Hospital, Theater...'
@@ -78,6 +87,7 @@ const BuildingEntry = () => {
                     <label className="form-label">Description</label>
                     <textarea
                         value={data.description}
+                        required
                         name='description'
                         onChange={(e) => setData({ ...data, [e.target.name]: e.target.value })}
                         col="10"
@@ -121,6 +131,7 @@ const BuildingEntry = () => {
                 <div className="mb-3">
                     <label className="form-label">Street</label>
                     <input
+                        required
                         name="street"
                         value={data.address.street}
                         onChange={(e) => setData({...data, ["address"] : {...data.address, [e.target.name] : e.target.value} })}
@@ -131,6 +142,7 @@ const BuildingEntry = () => {
                 <div className="mb-3">
                     <label className="form-label">Area</label>
                     <input
+                        required
                         onChange={(e) => setData({...data, ["address"] : {...data.address, [e.target.name] : e.target.value} })}
                         name="area"
                         value={data.address.area}
@@ -141,6 +153,7 @@ const BuildingEntry = () => {
                 <div className="mb-3">
                     <label className="form-label">City</label>
                     <input
+                        required
                         onChange={(e) => setData({...data, ["address"] : {...data.address, [e.target.name] : e.target.value} })}
                         name="city"
                         value={data.address.city}
@@ -151,6 +164,7 @@ const BuildingEntry = () => {
                 <div className="mb-3">
                     <label className="form-label">Pincode</label>
                     <input
+                        required
                         onChange={(e) => setData({...data, ["address"] : {...data.address, [e.target.name] : e.target.value} })}
                         name="pinCode"
                         value={data.address.pinCode}
@@ -161,6 +175,7 @@ const BuildingEntry = () => {
                 <div className="mb-3">
                     <label className="form-label">State</label>
                     <input
+                        required
                         onChange={(e) => setData({...data, ["address"] : {...data.address, [e.target.name] : e.target.value} })}
                         name="state"
                         value={data.address.state}
@@ -171,6 +186,7 @@ const BuildingEntry = () => {
                 <div className="mb-3">
                     <label className="form-label">Country</label>
                     <input
+                        required
                         onChange={(e) => setData({...data, ["address"] : {...data.address, [e.target.name] : e.target.value} })}
                         name="country"
                         value={data.address.country}
@@ -190,6 +206,7 @@ const BuildingEntry = () => {
                                 <div className="mb-3" key={index}>
                                     <label className="form-label">Building Images</label>
                                     <input
+                                        required
                                         value={data.images[val-1].name}
                                         name="name"
                                         onChange={(e) => {
@@ -199,6 +216,7 @@ const BuildingEntry = () => {
                                         type="text"
                                         className="form-control mb-3" />
                                     <input
+                                        required
                                         value={data.images[val-1].url}
                                         name="url"
                                         onChange={(e) => {
@@ -208,6 +226,7 @@ const BuildingEntry = () => {
                                         type="url"
                                         className="form-control mb-3" />
                                     <input
+                                        required
                                         value={data.images[val-1].description}
                                         name="description"
                                         onChange={(e) => {
@@ -256,6 +275,7 @@ const BuildingEntry = () => {
                                     <div className="mb-3" key={index}>
                                         <label className="form-label">Building Video</label>
                                         <input
+                                            required
                                             value={data.videos[val-1].name}
                                             name="name"
                                             onChange={(e) => {
@@ -265,6 +285,7 @@ const BuildingEntry = () => {
                                             type="text"
                                             className="form-control mb-3" />
                                         <input
+                                            required
                                             value={data.videos[val-1].url}
                                             name="url"
                                             onChange={(e) => {
@@ -275,6 +296,7 @@ const BuildingEntry = () => {
                                             className="form-control mb-3" />
 
                                         <input
+                                            required
                                             value={data.videos[val-1].description}
                                             name="description"
                                             onChange={(e) => {
@@ -319,6 +341,7 @@ const BuildingEntry = () => {
                                     <div className="mb-3" key={index}>
                                         <label className="form-label">Accessibility Features</label>
                                         <input
+                                            required
                                             value={data.accessibilityFeatures[val-1].name}
                                             name="name"
                                             onChange={(e) => {
@@ -328,6 +351,7 @@ const BuildingEntry = () => {
                                             type="text"
                                             className="form-control mb-3" />
                                         <input
+                                            required
                                             value={data.accessibilityFeatures[val-1].description}
                                             name="description"
                                             onChange={(e) => {
@@ -337,6 +361,7 @@ const BuildingEntry = () => {
                                             type="text"
                                             className="form-control mb-3" />
                                         <input
+                                            required
                                             value={data.accessibilityFeatures[val-1].image.url}
                                             name="url"
                                             onChange={(e) => {
@@ -348,6 +373,7 @@ const BuildingEntry = () => {
                                         
 
                                         <input
+                                            required
                                             value={data.accessibilityFeatures[val-1].video.url}
                                             name="url"
                                             onChange={(e) => {
