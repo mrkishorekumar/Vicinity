@@ -34,16 +34,13 @@ const BuildingEntry = () => {
         accessibilityFeatures: [
             {
                 name: "",
+                description: "",
                 image: {
-                    name: "",
                     url: "",
-                    description: ""
                 },
                 video: {
-                    name: "",
                     url: "",
-                    description: ""
-                },
+                }
             }
         ],
         buildingOwnerId: 1
@@ -196,16 +193,26 @@ const BuildingEntry = () => {
                                         value={data.images[val-1].name}
                                         name="name"
                                         onChange={(e) => {
-
+                                            setData({...data,["images"]:  [...data.images].fill({...data.images[val-1],name:e.target.value},val-1,val)})
                                         }}
                                         placeholder={`Building Image Name ${val}`}
                                         type="text"
                                         className="form-control mb-3" />
                                     <input
+                                        value={data.images[val-1].url}
+                                        name="url"
+                                        onChange={(e) => {
+                                            setData({...data,["images"]:  [...data.images].fill({...data.images[val-1],url:e.target.value},val-1,val)})
+                                        }}
                                         placeholder={`https://cloudinary.com/images/photo${val}`}
                                         type="url"
                                         className="form-control mb-3" />
                                     <input
+                                        value={data.images[val-1].description}
+                                        name="description"
+                                        onChange={(e) => {
+                                            setData({...data,["images"]:  [...data.images].fill({...data.images[val-1],description:e.target.value},val-1,val)})
+                                        }}
                                         placeholder='Image Description'
                                         type="text"
                                         className="form-control mb-3" />
@@ -228,7 +235,7 @@ const BuildingEntry = () => {
                                 className="btn btn-dark mt-3"
                                 onClick={
                                     () => {
-                                        image.length <= 4 && setImage([...image, image[image.length - 1] + 1])
+                                        image.length <= 4 ? (setImage([...image, image[image.length - 1] + 1])) : null
                                         setData({...data, ["images"] : [...data.images, { name: "", url: "", description: ""} ] })
                                     } 
                                 }>
@@ -249,20 +256,39 @@ const BuildingEntry = () => {
                                     <div className="mb-3" key={index}>
                                         <label className="form-label">Building Video</label>
                                         <input
+                                            value={data.videos[val-1].name}
+                                            name="name"
+                                            onChange={(e) => {
+                                                setData({...data,["videos"]:  [...data.videos].fill({...data.videos[val-1],name:e.target.value},val-1,val)})
+                                            }}
                                             placeholder={`Building Video ${val}`}
                                             type="text"
                                             className="form-control mb-3" />
                                         <input
-                                            placeholder='Building Video Description'
-                                            type="text"
-                                            className="form-control mb-3" />
-
-                                        <input
+                                            value={data.videos[val-1].url}
+                                            name="url"
+                                            onChange={(e) => {
+                                                setData({...data,["videos"]:  [...data.videos].fill({...data.videos[val-1],url:e.target.value},val-1,val)})
+                                            }}
                                             placeholder="https://cloudinary.com/video/master.mp4"
                                             type="url"
                                             className="form-control mb-3" />
+
+                                        <input
+                                            value={data.videos[val-1].description}
+                                            name="description"
+                                            onChange={(e) => {
+                                                setData({...data,["videos"]:  [...data.videos].fill({...data.videos[val-1],description:e.target.value},val-1,val)})
+                                            }}
+                                            placeholder='Building Video Description'
+                                            type="text"
+                                            className="form-control mb-3" />
                                         {
-                                            val !== 1 ? <button type="button" className="btn btn-dark" onClick={() => setVideo(video.slice(0, -1))}>Delete</button> : null
+                                            val !== 1 ? <button type="button" className="btn btn-dark" onClick={() => {
+                                                setVideo(video.slice(0, -1))
+                                                setData({...data, ["videos"] : data.videos.slice(0, -1) })
+                                            }
+                                            }>Delete</button> : null
                                         }
                                     </div>
                                 )
@@ -273,7 +299,10 @@ const BuildingEntry = () => {
                                 <button
                                     type="button"
                                     className="btn btn-dark mt-3"
-                                    onClick={() => video.length <= 4 && setVideo([...video, video[accessibility.length - 1] + 1])}>
+                                    onClick={() => {
+                                        video.length <= 4 ? setVideo([...video, video[video.length - 1] + 1]) : null
+                                        video.length <= 4 ? setData({...data, ["videos"] : [...data.videos, { name: "", url: "", description: ""}]}) : null
+                                    }}>
                                     Add Video
                                 </button>
                         }
@@ -290,24 +319,48 @@ const BuildingEntry = () => {
                                     <div className="mb-3" key={index}>
                                         <label className="form-label">Accessibility Features</label>
                                         <input
+                                            value={data.accessibilityFeatures[val-1].name}
+                                            name="name"
+                                            onChange={(e) => {
+                                                setData({...data,["accessibilityFeatures"]:  [...data.accessibilityFeatures].fill({...data.accessibilityFeatures[val-1],name:e.target.value},val-1,val)})
+                                            }}
                                             placeholder={`Features Name ${val}`}
                                             type="text"
                                             className="form-control mb-3" />
                                         <input
-                                            placeholder={`https://cloudinary.com/images/photo${val}`}
-                                            type="url"
-                                            className="form-control mb-3" />
-                                        <input
+                                            value={data.accessibilityFeatures[val-1].description}
+                                            name="description"
+                                            onChange={(e) => {
+                                                setData({...data,["accessibilityFeatures"]:  [...data.accessibilityFeatures].fill({...data.accessibilityFeatures[val-1],description:e.target.value},val-1,val)})
+                                            }}
                                             placeholder='Accessibility Description'
                                             type="text"
                                             className="form-control mb-3" />
+                                        <input
+                                            value={data.accessibilityFeatures[val-1].image.url}
+                                            name="url"
+                                            onChange={(e) => {
+                                                setData({...data,["accessibilityFeatures"]:  [...data.accessibilityFeatures].fill({...data.accessibilityFeatures[val-1],image:{...data.accessibilityFeatures[val-1].image,url:e.target.value}},val-1,val)})
+                                            }}
+                                            placeholder={`https://cloudinary.com/images/photo${val}`}
+                                            type="url"
+                                            className="form-control mb-3" />
+                                        
 
                                         <input
+                                            value={data.accessibilityFeatures[val-1].video.url}
+                                            name="url"
+                                            onChange={(e) => {
+                                                setData({...data,["accessibilityFeatures"]:  [...data.accessibilityFeatures].fill({...data.accessibilityFeatures[val-1],video:{...data.accessibilityFeatures[val-1].video,url:e.target.value}},val-1,val)})
+                                            }}
                                             placeholder="https://cloudinary.com/video/master.mp4"
                                             type="url"
                                             className="form-control mb-3" />
                                         {
-                                            val !== 1 ? <button type="button" className="btn btn-dark" onClick={() => setAccessibility(accessibility.slice(0, -1))}>Delete</button> : null
+                                            val !== 1 ? <button type="button" className="btn btn-dark" onClick={() =>{
+                                                setAccessibility(accessibility.slice(0, -1))
+                                                setData({...data, ["accessibilityFeatures"] : data.accessibilityFeatures.slice(0, -1) })
+                                            }} >Delete</button> : null
                                         }
                                     </div>
                                 )
@@ -318,7 +371,16 @@ const BuildingEntry = () => {
                                 <button
                                     type="button"
                                     className="btn btn-dark mt-3"
-                                    onClick={() => image.length <= 4 ? setAccessibility([...accessibility, accessibility[accessibility.length - 1] + 1]) : null}>
+                                    onClick={
+                                    () => {
+                                        accessibility.length <= 4 ? setAccessibility([...accessibility, accessibility[accessibility.length - 1] + 1]) : null
+                                        accessibility.length <= 4 ? setData({...data, ["accessibilityFeatures"] : [...data.accessibilityFeatures, {
+                                            name: "",
+                                            image: { url: "" },
+                                            video: { url: "" },
+                                        } ]}) : null
+                                    }
+                                    }>
                                     Add Features
                                 </button>
                         }
