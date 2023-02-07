@@ -7,7 +7,7 @@ function Dashboard() {
   return (
     <>
         <Navbar />
-        <BuildingOwnerDashboard />
+        <BuildingOwnerDashboard /> 
         <Footer />
     </>
   )
