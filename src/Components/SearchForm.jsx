@@ -1,8 +1,17 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import Logo from '../assets/images/vicinity.svg'
 
 const SearchForm = () => {
     return (
         <form className='container-xl my-5'>
+            <div>
+                <Link to="/"><img className="d-block mx-auto mb-2" src={Logo} alt="u-rl Logo" width="72"
+                    height="57" /></Link>
+            </div>
+            <div className="mb-2 text-center">
+                <h3>Search any Place!</h3>
+            </div>
             <div className="mb-3">
                 <label className="form-label">Street</label>
                 <input

@@ -6,3 +6,18 @@
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;
 }
+
+.card:hover {
+  transform: scale(1.10);
+  transition: all .3s ease-in-out;
+}
+
+.textOverflow {
+  display: -webkit-box;
+  white-space: wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+

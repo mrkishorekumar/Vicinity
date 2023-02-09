@@ -1,0 +1,17 @@
+[
+    {
+        "status" : "success",
+        "buildingName" : "Brookefields Mall",
+        "buildingDescription" : "Brookefields is a shopping mall located on Brookebond Road (Krishnasamy Road) in Coimbatore, India. It was opened in May 2009. The mall has outlets from major clothing and apparel brands."
+    },
+    {
+        "status" : "rejected",
+        "buildingName" : "Isha Yoga",
+        "buildingDescription" : "Isha Foundation is a nonprofit, spiritual organisation founded in 1992, Tamil Nadu, India, by Sadhguru Jaggi Vasudev. It hosts the Isha Yoga Centre, which offers yoga programs under the name Isha Yoga. "
+    },
+    {
+        "status" : "on progress",
+        "buildingName" : "Isha Yoga",
+        "buildingDescription" : "Isha Foundation is a nonprofit, spiritual organisation founded in 1992, Tamil Nadu, India, by Sadhguru Jaggi Vasudev. It hosts the Isha Yoga Centre, which offers yoga programs under the name Isha Yoga. "
+    }
+]

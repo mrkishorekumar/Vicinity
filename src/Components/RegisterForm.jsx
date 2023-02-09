@@ -4,7 +4,8 @@ import Logo from '../assets/images/vicinity.svg'
 
 const RegisterForm = () => {
 
-    const [data, setData] = useState({ name: "", email: "", password: "", address: "", phoneNumber: "", address : {
+    const [data, setData] = useState({ name: "", email: "", password: "", phoneNumber: "",
+     address : {
         street : "",
         area : "",
         city : "",
