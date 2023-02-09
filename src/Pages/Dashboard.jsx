@@ -8,8 +8,8 @@ function Dashboard() {
   return (
     <>
         <Navbar />
-        {/* <AdminDashboard /> */}
-        <BuildingOwnerDashboard />
+        <AdminDashboard />
+        {/* <BuildingOwnerDashboard /> */}
         <Footer />
     </>
   )

@@ -7,11 +7,13 @@ import Login from './Pages/Login'
 import Register from './Pages/Register'
 import Signup from './Pages/Signup'
 import Dashboard from './Pages/Dashboard'
+import Test from './Components/Test'
 
 const App = () => {
   return (
     <Routes>
       <Route path='/' element={<Home />} />
+      <Route path='/test' element={<Test />} />
       <Route path='/entry' element={<BuildingEntry />} />
       <Route path='/login' element={<Login />} />
       <Route path='/signup' element={<Signup />} />
