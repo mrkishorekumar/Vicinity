@@ -1,24 +1,83 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Loading from './Components/Loading'
-import BuildingEntry from './Pages/BuildingEntry'
-import Home from './Pages/Home'
-import Login from './Pages/Login'
-import Register from './Pages/Register'
-import Signup from './Pages/Signup'
-import Dashboard from './Pages/Dashboard'
-import Test from './Components/Test'
+import ProtectedRoute from './Helper/ProtectedRoute'
+
+const HomePage = lazy(() => import('./Pages/Home'))
+const LoginPage = lazy(() => (import('./Pages/Login')))
+const SignupPage = lazy(() => (import('./Pages/Signup')))
+const DashboardPage = lazy(() => (import('./Pages/Dashboard')))
+const RegisterPage = lazy(() => import("./Pages/Register"))
+const BuildingEntryPage = lazy(() => import('./Pages/BuildingEntry'))
 
 const App = () => {
+
+  const RouterMap = [
+    {
+      protected: false,
+      component: <HomePage />,
+      path: '/',
+    },
+    {
+      protected: false,
+      component: <LoginPage />,
+      path: '/login',
+    },
+    {
+      protected: false,
+      component: <SignupPage />,
+      path: '/signup',
+    },
+    {
+      protected: true,
+      component: <DashboardPage />,
+      path: '/dashboard',
+    },
+    {
+      protected: false,
+      component: <RegisterPage />,
+      path: '/register',
+    },
+    {
+      protected: true,
+      component: <BuildingEntryPage />,
+      path: '/entry',
+    },
+    // {
+    //   protected: false,
+    //   component: <PageNotFoundPage />,
+    //   path: 'notfound',
+    // },
+    // {
+    //   protected: false,
+    //   component: <Navigate to="/notfound" replace />,
+    //   path: '*',
+    // }
+  ]
+
+
   return (
     <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='/test' element={<Test />} />
-      <Route path='/entry' element={<BuildingEntry />} />
-      <Route path='/login' element={<Login />} />
-      <Route path='/signup' element={<Signup />} />
-      <Route path='/register' element={<Register />} />
-      <Route path='/dashboard' element={<Dashboard />} />
+      {
+        RouterMap.map((value, index) => {
+          return (
+            (!value.protected) ? (
+              <Route key={index} path={value.path} element={
+                <Suspense fallback={<Loading />}>
+                  {value.component}
+                </Suspense>
+              } />
+            ) :
+              <Route key={index} path={value.path} element={
+                <ProtectedRoute>
+                  <Suspense fallback={<Loading />}>
+                    {value.component}
+                  </Suspense>
+                </ProtectedRoute>
+              } />
+          )
+        })
+      }
     </Routes>
   )
 }

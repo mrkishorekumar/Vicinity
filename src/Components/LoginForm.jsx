@@ -1,8 +1,21 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useReducer } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios';
+import Cookies from 'js-cookie'
+import { reducerFunction } from '../Helper/Reducer'
 import Logo from '../assets/images/vicinity.svg'
 
 const LoginForm = () => {
+
+    const navigate = useNavigate()
+
+    const INITIAL_STATE = {
+        loading: false,
+        data: {},
+        error: false
+    }
+
+    const [state, dispatch] = useReducer(reducerFunction, INITIAL_STATE)
 
     const [data, setData] = useState({ email: "", password: "" })
 
@@ -15,7 +28,21 @@ const LoginForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(data);
+        dispatch({ type: "FETCH_START" })
+        axios.post(`${import.meta.env.VITE_SERVER_KEY}/authenticate`, data)
+            .then((res) => {
+                console.log(res)
+                dispatch({ type: "FETCH_SUCCESS", payload: res.data })
+                // if (res.data.status) {
+                //     Cookies.set('jwtKey', res.data.token, { expires: 7 })
+                //     navigate('/dashboard', { replace: true })
+                // }
+            })
+            .catch((err) => {
+                console.log(err)
+                // setErr(err.response.data)
+                // dispatch({ type: "FETCH_ERROR", payload: err.response.data })
+            })
     }
 
     return (

@@ -1,8 +1,21 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useReducer } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios';
+import Cookies from 'js-cookie'
+import { reducerFunction } from '../Helper/Reducer'
 import Logo from '../assets/images/vicinity.svg'
 
 const RegisterForm = () => {
+
+    const navigate = useNavigate()
+
+    const INITIAL_STATE = {
+        loading: false,
+        data: {},
+        error: false
+    }
+
+    const [state, dispatch] = useReducer(reducerFunction, INITIAL_STATE)
 
     const [data, setData] = useState({ name: "", email: "", password: "", phoneNumber: "",
      address : {
@@ -28,16 +41,23 @@ const RegisterForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(data);
+        dispatch({ type: "FETCH_START" })
+        axios.post(`${import.meta.env.VITE_SERVER_KEY}/Vicinity/buildingOwners`, data)
+            .then((res) => {
+                dispatch({ type: "FETCH_SUCCESS", payload: res.data })
+                if (res.data.status === "SUCCESS") {
+                    navigate('/login', { replace: true })
+                }
+            })
+            .catch((err) => {
+                console.log(err.response.data.error.message)
+                setErr(err.response.data.error.message)
+                dispatch({ type: "FETCH_ERROR", payload: err.response.data.error.message })
+            })
     }
 
     return (
         <form onSubmit={handleSubmit} className="container-xl my-5 needs-validation p-5"  >
-            {
-                err && <div className="alert alert-danger mb-2" role="alert">
-                    {err}
-                </div>
-            }
             <div>
                 <Link to="/"><img className="d-block mx-auto mb-2" src={Logo} alt="u-rl Logo" width="72"
                     height="57" /></Link>
@@ -45,6 +65,11 @@ const RegisterForm = () => {
             <div className="mb-2 text-center">
                 <h3>Register your Place</h3>
             </div>
+            {
+                err && <div className="alert alert-danger mb-2" role="alert">
+                    {err}
+                </div>
+            }
             <div className="form-group">
                 <div>
                     <label className="form-label">Full Name</label>
@@ -70,7 +95,7 @@ const RegisterForm = () => {
                     <input 
                         type="password" 
                         name="password" 
-                        // pattern=".{8,}" 
+                        pattern=".{8,}" 
                         className="form-control" 
                         placeholder="Your Password"
                         required 
