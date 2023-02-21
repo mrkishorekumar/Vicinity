@@ -1,7 +1,6 @@
 import React, { useState, useReducer } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
-import Cookies from 'js-cookie'
 import { reducerFunction } from '../Helper/Reducer'
 import Logo from '../assets/images/vicinity.svg'
 
@@ -42,7 +41,7 @@ const RegisterForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch({ type: "FETCH_START" })
-        axios.post(`${import.meta.env.VITE_SERVER_KEY}/Vicinity/buildingOwners`, data)
+        axios.post(`${import.meta.env.VITE_SERVER_KEY}/building-owners`, data)
             .then((res) => {
                 dispatch({ type: "FETCH_SUCCESS", payload: res.data })
                 if (res.data.status === "SUCCESS") {
@@ -50,7 +49,6 @@ const RegisterForm = () => {
                 }
             })
             .catch((err) => {
-                console.log(err.response.data.error.message)
                 setErr(err.response.data.error.message)
                 dispatch({ type: "FETCH_ERROR", payload: err.response.data.error.message })
             })

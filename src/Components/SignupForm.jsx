@@ -1,7 +1,6 @@
 import React, { useState, useReducer } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
-import Cookies from 'js-cookie'
 import { reducerFunction } from '../Helper/Reducer'
 import Logo from '../assets/images/vicinity.svg'
 
@@ -17,7 +16,15 @@ const SignupForm = () => {
 
     const [state, dispatch] = useReducer(reducerFunction, INITIAL_STATE)
 
-    const [data, setData] = useState({ name: "", email: "", password: "", address: "", pincode: "" })
+    const [data, setData] = useState({ name: "", email: "", password: "", phoneNumber: "",
+    address : {
+       street : "",
+       area : "",
+       city : "",
+       state : "",
+       country : "",
+       pinCode : ""
+   } })
 
     const [err, setErr] = useState("")
 
@@ -26,29 +33,27 @@ const SignupForm = () => {
         setData({ ...data, [name]: value })
     }
 
+    const handleAddressChange = (e) => {
+        let { name, value } = e.target
+        setData({...data, ["address"] : {...data.address, [name] : value} })
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch({ type: "FETCH_START" })
-        axios.post(`${import.meta.env.VITE_SERVER_KEY}/login`, data)
+        axios.post(`${import.meta.env.VITE_SERVER_KEY}/users`, data)
             .then((res) => {
                 dispatch({ type: "FETCH_SUCCESS", payload: res.data })
-                if (res.data.status) {
-                    navigate('/login', { replace: true })
-                }
             })
             .catch((err) => {
-                setErr(err.response.data)
+                setErr(err.response.data.error.message)
                 dispatch({ type: "FETCH_ERROR", payload: err.response.data })
             })
     }
 
+
     return (
-        <form onSubmit={handleSubmit} className="container-xl my-5 needs-validation p-5" noValidate  >
-            {
-                err && <div className="alert alert-danger mb-2" role="alert">
-                    {err}
-                </div>
-            }
+        <form onSubmit={handleSubmit} className="container-xl my-5 needs-validation p-5">
             <div>
                 <Link to="/"><img className="d-block mx-auto mb-2" src={Logo} alt="u-rl Logo" width="72"
                     height="57" /></Link>
@@ -76,8 +81,21 @@ const SignupForm = () => {
                     else.</small>
             </div>
             <div className="mb-3">
+                <label className="form-label">Phone Number</label>
+                <input
+                    name='phoneNumber'
+                    value={data.phoneNumber}
+                    onChange={handleChange}
+                    placeholder='Enter your Phone Number'
+                    type="tel"
+                    className="form-control" />
+            </div>
+            <div className="mb-3">
                 <label className="form-label">Street</label>
                 <input
+                    name='street'
+                    value={data.address.street}
+                    onChange={handleAddressChange}
                     placeholder='New Bangaru Naidu Street'
                     type="text"
                     className="form-control" />
@@ -85,6 +103,9 @@ const SignupForm = () => {
             <div className="mb-3">
                 <label className="form-label">Area</label>
                 <input
+                    name='area'
+                    value={data.address.area}
+                    onChange={handleAddressChange}
                     placeholder='Victoria Garden'
                     type="text"
                     className="form-control" />
@@ -92,6 +113,9 @@ const SignupForm = () => {
             <div className="mb-3">
                 <label className="form-label">City</label>
                 <input
+                    name='city'
+                    onChange={handleAddressChange}
+                    value={data.address.city}
                     placeholder='Chennai'
                     type="text"
                     className="form-control" />
@@ -99,6 +123,9 @@ const SignupForm = () => {
             <div className="mb-3">
                 <label className="form-label">State</label>
                 <input
+                    name='state'
+                    onChange={handleAddressChange}
+                    value={data.address.state}
                     placeholder='Tamil Nadu'
                     type="text"
                     className="form-control" />
@@ -106,6 +133,9 @@ const SignupForm = () => {
             <div className="mb-3">
                 <label className="form-label">Country</label>
                 <input
+                    name='country'
+                    onChange={handleAddressChange}
+                    value={data.address.country}
                     placeholder='India'
                     type="text"
                     className="form-control" />
@@ -113,8 +143,11 @@ const SignupForm = () => {
             <div className="form-group">
                 <div>
                     <label className="form-label">Pin Code</label>
-                    <input type="number" name="pincode" className="form-control" placeholder="600078"
-                        required onChange={handleChange} value={data.pincode} />
+                    <input
+                        onChange={handleAddressChange}
+                        value={data.address.pinCode}
+                         type="number" name="pinCode" className="form-control" placeholder="600078"
+                          />
                 </div>
             </div>
             <div className="form-group">
@@ -127,8 +160,18 @@ const SignupForm = () => {
                     </div>
                 </div>
             </div>
+            {
+                err && <div className="alert alert-danger my-3" role="alert">
+                    {err}
+                </div>
+            }
+            {
+                Object.keys(state.data).length > 0 && state.data.message  && <div className="my-3 alert alert-success" role="alert">
+                                Account Created Successfully! Go to Login Page
+                            </div>
+            }
             <div className="d-flex justify-content-between w-100 mt-3">
-                <div><button type="submit" className="btn btn-dark">Signup</button></div>
+                <div><button type="submit" className="btn btn-dark">{state.loading ? "Loading..." : "Signup"}</button></div>
                 <div><Link className="btn btn-outline-dark" to="/login" role="button">Login</Link></div>
             </div>
         </form>

@@ -1,9 +1,9 @@
 import React from 'react'
 
-function AccountVerficationModal() {
+function AccountVerficationModal({data}) {
     return (
         <>
-            <div className="modal fade" id="accountVerfication" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabIndex="-1">
+            <div className="modal fade" id={data.email} aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabIndex="-1">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -21,39 +21,39 @@ function AccountVerficationModal() {
                                 <tbody>
                                     <tr>
                                         <td>Full Name</td>
-                                        <td>Otto</td>
+                                        <td>{data.name}</td>
                                     </tr>
                                     <tr>
                                         <td>Company Email</td>
-                                        <td>thornton@gmail.com</td>
+                                        <td>{data.email}</td>
                                     </tr>
                                     <tr>
                                         <td>Phone Number</td>
-                                        <td>987654321</td>
+                                        <td>{data.phoneNumber}</td>
                                     </tr>
                                     <tr>
                                         <td>Street</td>
-                                        <td>711-2880 Nulla St.</td>
+                                        <td>{data.address.street}</td>
                                     </tr>
                                     <tr>
                                         <td>Area</td>
-                                        <td>Mankato</td>
+                                        <td>{data.address.area}</td>
                                     </tr>
                                     <tr>
                                         <td>City</td>
-                                        <td>Mississippi</td>
+                                        <td>{data.address.city}</td>
                                     </tr>
                                     <tr>
                                         <td>State</td>
-                                        <td>Mankato</td>
+                                        <td>{data.address.state}</td>
                                     </tr>
                                     <tr>
                                         <td>Country</td>
-                                        <td>USA</td>
+                                        <td>{data.address.country}</td>
                                     </tr>
                                     <tr>
                                         <td>Company PinCode</td>
-                                        <td>5637401</td>
+                                        <td>{data.address.pinCode}</td>
                                     </tr>
                                 </tbody>
                             </table>

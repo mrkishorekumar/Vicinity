@@ -31,27 +31,21 @@ const LoginForm = () => {
         dispatch({ type: "FETCH_START" })
         axios.post(`${import.meta.env.VITE_SERVER_KEY}/authenticate`, data)
             .then((res) => {
-                console.log(res)
                 dispatch({ type: "FETCH_SUCCESS", payload: res.data })
-                // if (res.data.status) {
-                //     Cookies.set('jwtKey', res.data.token, { expires: 7 })
-                //     navigate('/dashboard', { replace: true })
-                // }
+                if (res.data.responseStatus === "SUCCESS") {
+                    Cookies.set('jwtKey', res.data.data.jwtToken, { expires: 1 })
+                    navigate('/dashboard', { replace: true })
+                }
             })
             .catch((err) => {
-                console.log(err)
-                // setErr(err.response.data)
-                // dispatch({ type: "FETCH_ERROR", payload: err.response.data })
+                setErr(err.response.data.error.debugMessage)
+                dispatch({ type: "FETCH_ERROR", payload: err.response.data })
             })
     }
 
     return (
-        <form onSubmit={handleSubmit} className="container-xl my-5 needs-validation p-5" noValidate  >
-            {
-                err && <div className="alert alert-danger mb-2" role="alert">
-                    {err}
-                </div>
-            }
+        <form onSubmit={handleSubmit} className="container-xl my-5 needs-validation p-5">
+            
             <div>
                 <Link to="/"><img className="d-block mx-auto mb-2" src={Logo} alt="u-rl Logo" width="72"
                     height="57" /></Link>
@@ -81,8 +75,13 @@ const LoginForm = () => {
                     </div>
                 </div>
             </div>
+            {
+                err && <div className="alert alert-danger my-2" role="alert">
+                    {err}
+                </div>
+            }
             <div className="d-flex justify-content-between w-100 mt-3">
-                <div><button type="submit" className="btn btn-dark">Login</button></div>
+                <div><button type="submit" className="btn btn-dark">{state.loading ? "Loading..." : "Login"}</button></div>
                 <div><Link className="btn btn-outline-dark" to="/signup" role="button">Signup</Link></div>
             </div>
         </form>

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import PlusButton from '../assets/images/plusButton.svg'
 import Data from '../Utils/BuildingOwnerDashboard.json'
+import IndividualBuildingModel from './IndividualBuildingModel'
 
 function BuildingOwnerDashboard() {
 
@@ -19,13 +20,16 @@ function BuildingOwnerDashboard() {
             {
               Data.map((val, index) => {
                 return (
-                  <div key={index} className={val.status === "success"?"card cardH text-bg-success mb-3 me-3 card": val.status === "rejected"?"card cardH text-bg-danger mb-3 me-3 card":"card cardH text-bg-warning mb-3 me-3 card"} style={{ maxWidth: "18rem", cursor: "pointer" }}>
+                  <Fragment>
+                  <div data-bs-target="#buildingOwnerDashboard" data-bs-toggle="modal" key={index} className={val.status === "success"?"card cardH text-bg-success mb-3 me-3 card": val.status === "rejected"?"card cardH text-bg-danger mb-3 me-3 card":"card cardH text-bg-warning mb-3 me-3 card"} style={{ maxWidth: "18rem", cursor: "pointer" }}>
                     <div className="card-header text-uppercase">{val.status}</div>
                     <div className="card-body">
                       <h5 className="card-title">{val.buildingName}</h5>
                       <p className="card-text textOverflow" style={{ height: "100px" }}>{val.buildingDescription}</p>
                     </div>
                   </div>
+                  <IndividualBuildingModel />
+                  </Fragment>
                 )
               })
             }

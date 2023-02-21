@@ -2,6 +2,8 @@ import React, { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Loading from './Components/Loading'
 import ProtectedRoute from './Helper/ProtectedRoute'
+import IndividualBuilding from './Pages/IndividualBuilding'
+import Search from './Pages/Search'
 
 const HomePage = lazy(() => import('./Pages/Home'))
 const LoginPage = lazy(() => (import('./Pages/Login')))
@@ -29,7 +31,7 @@ const App = () => {
       path: '/signup',
     },
     {
-      protected: true,
+      protected: false,
       component: <DashboardPage />,
       path: '/dashboard',
     },
@@ -42,6 +44,16 @@ const App = () => {
       protected: true,
       component: <BuildingEntryPage />,
       path: '/entry',
+    },
+    {
+      protected: false,
+      component: <Search />,
+      path: '/search',
+    },
+    {
+      protected: false,
+      component: <IndividualBuilding />,
+      path: '/building/:id',
     },
     // {
     //   protected: false,

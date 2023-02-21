@@ -3,10 +3,9 @@ import { Link } from 'react-router-dom'
 import Logo from '../assets/images/vicinity.svg'
 
 
-
-function Loading() {
-    return (
-        <div className='d-flex flex-column w-100 vh-100 justify-content-center align-items-center'>
+function ApiLoading() {
+  return (
+    <div className='d-flex flex-column w-100 h-100 justify-content-center align-items-center'>
             <div className="spinner-border" role="status">
                 <span className="visually-hidden">Loading...</span>
             </div>
@@ -20,7 +19,7 @@ function Loading() {
                 </div>
             </div>
         </div>
-    )
+  )
 }
 
-export default Loading
+export default ApiLoading

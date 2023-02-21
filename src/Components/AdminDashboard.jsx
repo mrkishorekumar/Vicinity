@@ -1,10 +1,39 @@
-import React from 'react'
+import React, { useEffect, useReducer, useState } from 'react'
+import axios from 'axios';
+import Cookies from 'js-cookie'
+import { reducerFunction } from '../Helper/Reducer'
 import AccountVerfication from './AccountVerfication'
 import AllVerified from './AllVerified'
 import BuildingVerification from './BuildingVerification'
 import CardWrapper from './CardWrapper'
+import ApiLoading from './ApiLoading';
 
 function AdminDashboard() {
+
+    const INITIAL_STATE = {
+        loading: false,
+        data: {},
+        error: false
+      }
+    
+    const [state, dispatch] = useReducer(reducerFunction, INITIAL_STATE)
+
+    const [account, setAccount] = useState([])
+
+    useEffect(() => {
+        dispatch({ type: "FETCH_START" })
+        axios.get(`${import.meta.env.VITE_SERVER_KEY}/building-owners/status/PENDING`, { headers: { Authorization: `Bearer ${Cookies.get('jwtKey')}` }})
+          .then((res) => {
+              dispatch({ type: "FETCH_SUCCESS", payload: res.data })
+              setAccount(res.data.data)
+          })
+          .catch((err) => {
+              console.log(err)
+              dispatch({ type: "FETCH_ERROR", payload: err.response.data })
+          })
+      },[])
+
+
   return (
     <div className="m-5">
     <div className="card text-center">
@@ -22,12 +51,12 @@ function AdminDashboard() {
             <div className="tab-content">
                 <div className="tab-pane fade show active" id="home">
                   <CardWrapper>
-                    <AccountVerfication />                  
-                    <AccountVerfication />                  
-                    <AccountVerfication />                  
-                    <AccountVerfication />                  
-                    <AccountVerfication />                  
-                    <AccountVerfication />                  
+                    {
+                        state.loading ? <ApiLoading /> : account.length === 0 ? <AllVerified /> : account.map((val) => {
+                            return <AccountVerfication key={val.id} data={val} arr={account} />
+                        })
+                       
+                    }                
                   </CardWrapper>
                 </div>
                 <div className="tab-pane fade" id="profile">
@@ -37,7 +66,6 @@ function AdminDashboard() {
                     <BuildingVerification />
                     <BuildingVerification />
                     <BuildingVerification />
-
                 </div>
             </div>
         </div>

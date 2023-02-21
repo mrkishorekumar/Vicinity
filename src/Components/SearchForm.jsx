@@ -4,7 +4,7 @@ import Logo from '../assets/images/vicinity.svg'
 
 const SearchForm = () => {
     return (
-        <form className='container-xl my-5'>
+        <form action='/search' className='container-xl my-5'>
             <div>
                 <Link to="/"><img className="d-block mx-auto mb-2" src={Logo} alt="u-rl Logo" width="72"
                     height="57" /></Link>
@@ -15,6 +15,7 @@ const SearchForm = () => {
             <div className="mb-3">
                 <label className="form-label">Street</label>
                 <input
+                    name='street'
                     placeholder='New Bangaru Naidu Street'
                     type="text"
                     className="form-control" />
@@ -22,6 +23,7 @@ const SearchForm = () => {
             <div className="mb-3">
                 <label className="form-label">Area</label>
                 <input
+                    name='area'
                     placeholder='Victoria Garden'
                     type="text"
                     className="form-control" />
@@ -29,6 +31,8 @@ const SearchForm = () => {
             <div className="mb-3">
                 <label className="form-label">City</label>
                 <input
+                    required
+                    name='city'
                     placeholder='Chennai'
                     type="text"
                     className="form-control" />
@@ -46,6 +50,7 @@ const SearchForm = () => {
             <div className="mb-3">
                 <label className="form-label">State</label>
                 <input
+                    name='state'
                     placeholder='Tamil Nadu'
                     type="text"
                     className="form-control" />
@@ -53,6 +58,7 @@ const SearchForm = () => {
             <div className="mb-3">
                 <label className="form-label">Country</label>
                 <input
+                    name='country'
                     placeholder='India'
                     type="text"
                     className="form-control" />
