@@ -1,10 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useReducer } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+import Cookies from 'js-cookie'
+
+import { reducerFunction } from '../Helper/Reducer'
 import Logo from '../assets/images/vicinity.svg'
 import Footer from '../Components/Footer'
 import Navbar from '../Components/Navbar'
 
 const BuildingEntry = () => {
+
+    const INITIAL_STATE = {
+        loading: false,
+        data: {},
+        error: false
+      }
+    
+    const [state, dispatch] = useReducer(reducerFunction, INITIAL_STATE)
 
     const [data, setData] = useState({
         name: "",
@@ -57,7 +69,16 @@ const BuildingEntry = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(data)
+        dispatch({ type: "FETCH_START" })
+        axios.post(`${import.meta.env.VITE_SERVER_KEY}/buildings`,data, { headers: { Authorization: `Bearer ${Cookies.get('jwtKey')}` }}, )
+          .then((res) => {
+                console.log(res)
+              dispatch({ type: "FETCH_SUCCESS", payload: res.data })
+          })
+          .catch((err) => {
+              console.log(err)
+              dispatch({ type: "FETCH_ERROR", payload: err.response.data })
+          })
     }
 
     return (

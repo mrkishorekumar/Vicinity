@@ -1,7 +1,18 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import Cookies from 'js-cookie'
+import { checkUser } from '../Helper/ProtectedRoute'
 
 const Navbar = () => {
+
+    const navigate = useNavigate()
+
+
+    const logout = () => {
+        Cookies.remove("jwtKey");
+        navigate("/",{ replace: true })
+    }
+
     return (
         <nav style={{zIndex : "999"}} className="navbar navbar-expand-lg navbar-dark bg-dark position-sticky top-0 left-0" aria-label="Ninth navbar example">
             <div className="container-xl">
@@ -11,7 +22,19 @@ const Navbar = () => {
                 </button>
 
                 <div className="collapse navbar-collapse" id="navbarsExample07XL">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                    {
+                        checkUser() ? <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li className="nav-item">
+                            <a href="#" className="nav-link active pe-auto" aria-current="page" onClick={logout}>Logout</a>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link active" to="/dashboard">Dashboard</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link active" to="/entry">Add Your Place</Link>
+                        </li>
+
+                    </ul> : <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
                             <Link className="nav-link active" aria-current="page" to="/login">Login</Link>
                         </li>
@@ -22,6 +45,8 @@ const Navbar = () => {
                             <Link className="nav-link active" to="/register">Register your Place</Link>
                         </li>
                     </ul>
+                    }
+ 
                 </div>
             </div>
         </nav>

@@ -7,6 +7,7 @@ import AllVerified from './AllVerified'
 import BuildingVerification from './BuildingVerification'
 import CardWrapper from './CardWrapper'
 import ApiLoading from './ApiLoading';
+import Loading from './Loading';
 
 function AdminDashboard() {
 
@@ -18,7 +19,13 @@ function AdminDashboard() {
     
     const [state, dispatch] = useReducer(reducerFunction, INITIAL_STATE)
 
+    const [building, buildingDispatch] = useReducer(reducerFunction, INITIAL_STATE)
+
+
     const [account, setAccount] = useState([])
+
+    const [buildingList, buildingSetAccount] = useState([])
+
 
     useEffect(() => {
         dispatch({ type: "FETCH_START" })
@@ -31,7 +38,24 @@ function AdminDashboard() {
               console.log(err)
               dispatch({ type: "FETCH_ERROR", payload: err.response.data })
           })
+
+          buildingDispatch({ type: "FETCH_START" })
+          axios.get(`${import.meta.env.VITE_SERVER_KEY}/buildings/status/PENDING`, { headers: { Authorization: `Bearer ${Cookies.get('jwtKey')}` }})
+            .then((res) => {
+                buildingDispatch({ type: "FETCH_SUCCESS", payload: res.data })
+                buildingSetAccount(res.data.data)
+            })
+            .catch((err) => {
+                console.log(err)
+                buildingDispatch({ type: "FETCH_ERROR", payload: err.response.data })
+            })
+
       },[])
+
+
+    if(state.loading || building.loading){
+        return <Loading />
+    }
 
 
   return (
@@ -52,7 +76,7 @@ function AdminDashboard() {
                 <div className="tab-pane fade show active" id="home">
                   <CardWrapper>
                     {
-                        state.loading ? <ApiLoading /> : account.length === 0 ? <AllVerified /> : account.map((val) => {
+                        state.loading ? <ApiLoading /> : account.length === 0 ? <AllVerified content="Account" /> : account.map((val) => {
                             return <AccountVerfication key={val.id} data={val} arr={account} />
                         })
                        
@@ -60,12 +84,11 @@ function AdminDashboard() {
                   </CardWrapper>
                 </div>
                 <div className="tab-pane fade" id="profile">
-                    {/* <AllVerified content="Building" /> */}
-                    <BuildingVerification />
-                    <BuildingVerification />
-                    <BuildingVerification />
-                    <BuildingVerification />
-                    <BuildingVerification />
+                    {
+                        buildingList.loading ? <ApiLoading /> : buildingList.length === 0 ? <AllVerified content="Building" /> : buildingList.map((val) => {
+                            return <BuildingVerification key={val.id} data={val} arr={buildingList} />
+                        })
+                    }
                 </div>
             </div>
         </div>

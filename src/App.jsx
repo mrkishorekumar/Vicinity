@@ -31,7 +31,7 @@ const App = () => {
       path: '/signup',
     },
     {
-      protected: false,
+      protected: true,
       component: <DashboardPage />,
       path: '/dashboard',
     },
