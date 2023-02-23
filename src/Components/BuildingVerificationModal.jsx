@@ -2,7 +2,8 @@ import React from 'react'
 import CarouselList from './CarouselList'
 import VideoCarouselList from './VideoCarouselList'
 
-function BuildingVerificationModal() {
+function BuildingVerificationModal({data}) {
+    console.log(data)
     return (
         <div className="modal fade" id="buildingVerification" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog modal-fullscreen">
@@ -14,7 +15,7 @@ function BuildingVerificationModal() {
                     <div className="modal-body">
                         <div>
                             <h4>Building Images</h4>
-                            <CarouselList />
+                            <CarouselList data={data.images} />
                         </div>
                         <table className="table">
                             <thead>
@@ -26,43 +27,43 @@ function BuildingVerificationModal() {
                             <tbody>
                                 <tr>
                                     <td>Name</td>
-                                    <td>Mall</td>
+                                    <td>{data.name}</td>
                                 </tr>
                                 <tr>
                                     <td>Description</td>
-                                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae architecto deserunt soluta, repellat beatae aperiam libero quibusdam! Sapiente repellendus, voluptatem laboriosam molestiae deleniti reiciendis? Eos animi impedit sunt? Tenetur, nihil.</td>
+                                    <td>{data.description}</td>
                                 </tr>
                                 <tr>
                                     <td>Building Type</td>
-                                    <td>Commercial</td>
+                                    <td>{data.type}</td>
                                 </tr>
                                 <tr>
                                     <td>Sector</td>
-                                    <td>Private</td>
+                                    <td>{data.sector}</td>
                                 </tr>
                                 <tr>
                                     <td>Street</td>
-                                    <td>SF 201</td>
+                                    <td>{data.address.street}</td>
                                 </tr>
                                 <tr>
                                     <td>Area</td>
-                                    <td>Sivanandapuram</td>
+                                    <td>{data.address.area}</td>
                                 </tr>
                                 <tr>
                                     <td>City</td>
-                                    <td>Coimatore</td>
+                                    <td>{data.address.city}</td>
                                 </tr>
                                 <tr>
                                     <td>PinCode</td>
-                                    <td>5637401</td>
+                                    <td>{data.address.pinCode}</td>
                                 </tr>
                                 <tr>
                                     <td>State</td>
-                                    <td>Tamil Nadu</td>
+                                    <td>{data.address.state}</td>
                                 </tr>
                                 <tr>
                                     <td>Country</td>
-                                    <td>India</td>
+                                    <td>{data.address.country}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -71,14 +72,14 @@ function BuildingVerificationModal() {
                         </div>
                         <div>
                             <h4>Videos</h4>
-                            <VideoCarouselList />
+                            <VideoCarouselList data={data.videos} />
                         </div>
                         <div className="text-success my-2">
                             <hr />
                         </div>
                         <div className='mt-3'>
                             <h4>Accessibility Features</h4>
-                            <VideoCarouselList />
+                            <VideoCarouselList data={data.accessibilityFeatures} />
                         </div>
                     </div>
                     <div className="modal-footer">

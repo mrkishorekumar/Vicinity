@@ -16,7 +16,7 @@ function BuildingVerification({data, arr}) {
             </div>
             {
                 arr.map((val) => {
-                    return <BuildingVerificationModal key={val.id} data={val.user} />
+                    return <BuildingVerificationModal key={val.id} data={val} />
                 })
             }
         </>
