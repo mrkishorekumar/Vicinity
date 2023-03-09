@@ -10,10 +10,11 @@ function VideoCarouselList({data}) {
                     return (
                         <Carousel.Item key={videoObj.id}>
                             <ReactPlayer
+                                muted
                                 url={videoObj.url}
                                 pip={true}
                                 controls={true}
-                                playing={true}
+                                playing={false}
                             />
                             <Carousel.Caption>
                                 <h3>{videoObj.name}</h3>

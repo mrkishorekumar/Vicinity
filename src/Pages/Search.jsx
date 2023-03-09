@@ -16,16 +16,14 @@ function Search() {
         country : searchParams.get("country")
       }
 
-      console.log(body)
 
-      axios.post(`${import.meta.env.VITE_SERVER_KEY}/authenticate`, data)
-      .then((res) => {
-          dispatch({ type: "FETCH_SUCCESS", payload: res.data })
-      })
-      .catch((err) => {
-          setErr(err.response.data.error.debugMessage)
-      })
-
+      axios.get(`${import.meta.env.VITE_SERVER_KEY}/buildings/address?city=${body.city}&street=${body.street}&area=${body.area}&pincode=${body.pincode}&state=${body.state}&country=${body.country}`)
+          .then((res) => {
+              console.log(res)
+          })
+          .catch((err) => {
+              console.log(err)
+          })
 
     },[])
 

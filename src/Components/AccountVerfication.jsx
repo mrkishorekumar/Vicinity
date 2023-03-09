@@ -21,7 +21,7 @@ function AccountVerfication({data, arr}) {
             </div>
             {
                 arr.map((val) => {
-                    return <AccountVerficationModal key={val.id} data={val.user} />
+                    return <AccountVerficationModal id={data.id} key={val.id}  data={val.user} />
                 })
             }
         </>

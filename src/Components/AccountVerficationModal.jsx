@@ -1,6 +1,30 @@
 import React from 'react'
+import axios from 'axios'
+import Cookies from 'js-cookie'
 
-function AccountVerficationModal({data}) {
+function AccountVerficationModal({data,id}) {
+
+
+    const Verify = (id) => {
+        axios.patch(`${import.meta.env.VITE_SERVER_KEY}/building-owners/${id}/status/VERIFIED`, { headers: { Authorization: `Bearer ${Cookies.get('jwtKey')}` }})
+          .then((res) => {
+            console.log(res)
+          })
+          .catch((err) => {
+              console.log(err)
+          })
+    }
+
+    const Reject = (id) => {
+        axios.patch(`${import.meta.env.VITE_SERVER_KEY}/building-owners/${id}/status/REJECTED`, { headers: { Authorization: `Bearer ${Cookies.get('jwtKey')}` }})
+          .then((res) => {
+            console.log(res)
+          })
+          .catch((err) => {
+              console.log(err)
+          })
+    }
+
     return (
         <>
             <div className="modal fade" id={data.email} aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabIndex="-1">
@@ -59,8 +83,8 @@ function AccountVerficationModal({data}) {
                             </table>
                         </div>
                         <div className="modal-footer">
-                            <button className="btn btn-outline-dark">Reject</button>
-                            <button className="btn btn-dark">Confirm Verification</button>
+                            <button className="btn btn-outline-dark" onClick={() => Reject(id)}>Reject</button>
+                            <button className="btn btn-dark" onClick={() => Verify(id)}>Confirm Verification</button>
                         </div>
                     </div>
                 </div>

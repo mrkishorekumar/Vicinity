@@ -1,0 +1,160 @@
+[
+    {
+        "id": 1,
+        "name": "Brookefields Mall",
+        "sector": "PRIVATE",
+        "type": "COMMERCIAL",
+        "description": "Brookefields is a shopping mall located on Brookebond Road (Krishnasamy Road) in Coimbatore, India. It was opened in May 2009. The mall has outlets from major clothing and apparel brands and a 06-screens multiplex cinema, along with a food court serving multi-cuisine dishes. \n",
+        "verificationStatus": "VERIFIED",
+        "address": {
+            "id": 13,
+            "street": "Dr Krishnasamy Mudaliyar Rd,",
+            "area": "Ram Nagar",
+            "city": "Coimbatore",
+            "state": "TamilNadu",
+            "country": "Country",
+            "pinCode": "641000"
+        },
+        "images": [
+            {
+                "id": 7,
+                "name": "outside-view",
+                "url": "https://fastly.4sqi.net/img/general/600x600/39329521_UizNufEKykuz8PtEf6zwlhG62xVmcrgt50WUG1gMAMs.jpg",
+                "description": "description"
+            },
+            {
+                "id": 8,
+                "name": "inside-view",
+                "url": "https://cdn1.goibibo.com/voy_ing/t_fs/coimbatore-brookefields-mall-157466998484o.jpeg",
+                "description": "description"
+            }
+        ],
+        "videos": [
+            {
+                "id": 6,
+                "name": "inside-view",
+                "url": "https://res.cloudinary.com/ddsgwimg0/video/upload/v1677078141/brooksMall_dpdyxw.mp4",
+                "description": "video description 1"
+            },
+            {
+                "id": 7,
+                "name": "games",
+                "url": "https://res.cloudinary.com/ddsgwimg0/video/upload/v1677078369/brookFieldsGames_ww5p0m.mp4",
+                "description": "video description 2"
+            }
+        ],
+        "accessibilityFeatures": [
+            {
+                "id": 3,
+                "name": "feature 1",
+                "image": {
+                    "id": 5,
+                    "name": null,
+                    "url": "https://res.cloudinary.com/ddsgwimg0/image/upload/v1677077982/cld-sample-5.jpg",
+                    "description": null
+                },
+                "video": {
+                    "id": 4,
+                    "name": null,
+                    "url": "https://res.cloudinary.com/ddsgwimg0/video/upload/v1677078369/brookFieldsGames_ww5p0m.mp4",
+                    "description": null
+                }
+            },
+            {
+                "id": 4,
+                "name": "feature 1",
+                "image": {
+                    "id": 6,
+                    "name": null,
+                    "url": "https://res.cloudinary.com/ddsgwimg0/image/upload/v1677077982/cld-sample-5.jpg",
+                    "description": null
+                },
+                "video": {
+                    "id": 5,
+                    "name": null,
+                    "url": "https://res.cloudinary.com/ddsgwimg0/video/upload/v1677078369/brookFieldsGames_ww5p0m.mp4",
+                    "description": null
+                }
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Brookefields Mall",
+        "sector": "PRIVATE",
+        "type": "COMMERCIAL",
+        "description": "Brookefields is a shopping mall located on Brookebond Road (Krishnasamy Road) in Coimbatore, India. It was opened in May 2009. The mall has outlets from major clothing and apparel brands and a 06-screens multiplex cinema, along with a food court serving multi-cuisine dishes. \n",
+        "verificationStatus": "VERIFIED",
+        "address": {
+            "id": 15,
+            "street": "Dr Krishnasamy Mudaliyar Rd,",
+            "area": "Ram Nagar",
+            "city": "Coimbatore",
+            "state": "TamilNadu",
+            "country": "Country",
+            "pinCode": "641000"
+        },
+        "images": [
+            {
+                "id": 15,
+                "name": "outside-view",
+                "url": "https://fastly.4sqi.net/img/general/600x600/39329521_UizNufEKykuz8PtEf6zwlhG62xVmcrgt50WUG1gMAMs.jpg",
+                "description": "description"
+            },
+            {
+                "id": 16,
+                "name": "inside-view",
+                "url": "https://cdn1.goibibo.com/voy_ing/t_fs/coimbatore-brookefields-mall-157466998484o.jpeg",
+                "description": "description"
+            }
+        ],
+        "videos": [
+            {
+                "id": 14,
+                "name": "inside-view",
+                "url": "https://res.cloudinary.com/ddsgwimg0/video/upload/v1677078141/brooksMall_dpdyxw.mp4",
+                "description": "video description 1"
+            },
+            {
+                "id": 15,
+                "name": "games",
+                "url": "https://res.cloudinary.com/ddsgwimg0/video/upload/v1677078369/brookFieldsGames_ww5p0m.mp4",
+                "description": "video description 2"
+            }
+        ],
+        "accessibilityFeatures": [
+            {
+                "id": 7,
+                "name": "feature 1",
+                "image": {
+                    "id": 13,
+                    "name": null,
+                    "url": "https://res.cloudinary.com/ddsgwimg0/image/upload/v1677077982/cld-sample-5.jpg",
+                    "description": null
+                },
+                "video": {
+                    "id": 12,
+                    "name": null,
+                    "url": "https://res.cloudinary.com/ddsgwimg0/video/upload/v1677078369/brookFieldsGames_ww5p0m.mp4",
+                    "description": null
+                }
+            },
+            {
+                "id": 8,
+                "name": "feature 1",
+                "image": {
+                    "id": 14,
+                    "name": null,
+                    "url": "https://res.cloudinary.com/ddsgwimg0/image/upload/v1677077982/cld-sample-5.jpg",
+                    "description": null
+                },
+                "video": {
+                    "id": 13,
+                    "name": null,
+                    "url": "https://res.cloudinary.com/ddsgwimg0/video/upload/v1677078369/brookFieldsGames_ww5p0m.mp4",
+                    "description": null
+                }
+            }
+        ]
+    }
+]

@@ -1,9 +1,55 @@
 import React from 'react'
+import axios from 'axios'
+import Cookies from 'js-cookie'
 import CarouselList from './CarouselList'
 import VideoCarouselList from './VideoCarouselList'
 
+
+export function dataModification(data){
+    return data.map((val) => {
+        return {
+            id : val.id,
+            url : val.video.url,
+            name : val.video.name,
+            description : val.video.description
+        }
+    })
+}
+
+export function photodataModification(data){
+    return data.map((val) => {
+        return {
+            id : val.id,
+            url : val.image.url,
+            name : val.image.name,
+            description : val.image.description
+        }
+    })
+}
+
 function BuildingVerificationModal({data}) {
-    console.log(data)
+
+
+    const rejectBuliding = (id) => {
+        axios.patch(`${import.meta.env.VITE_SERVER_KEY}/buildings/${id}/status/REJECTED`, { headers: { Authorization: `Bearer ${Cookies.get('jwtKey')}` }})
+          .then((res) => {
+            console.log(res)
+          })
+          .catch((err) => {
+              console.log(err)
+          })
+    }
+
+    const approveBuliding = (id) => {
+        axios.patch(`${import.meta.env.VITE_SERVER_KEY}/buildings/${id}/status/VERIFIED`, { headers: { Authorization: `Bearer ${Cookies.get('jwtKey')}` }})
+          .then((res) => {
+            console.log(res)
+          })
+          .catch((err) => {
+              console.log(err)
+          })
+    }
+
     return (
         <div className="modal fade" id="buildingVerification" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog modal-fullscreen">
@@ -79,13 +125,15 @@ function BuildingVerificationModal({data}) {
                         </div>
                         <div className='mt-3'>
                             <h4>Accessibility Features</h4>
-                            <VideoCarouselList data={data.accessibilityFeatures} />
+                            <VideoCarouselList data={dataModification(data.accessibilityFeatures)} />
+                            <h4>Accessibility Features Images</h4>
+                            <CarouselList data={photodataModification(data.accessibilityFeatures)} />
                         </div>
                     </div>
                     <div className="modal-footer">
                         {/* data-bs-dismiss="modal" */}
-                        <button type="button" className="btn btn-outline-dark" >Reject</button>
-                        <button type="button" className="btn btn-dark">Approve</button>
+                        <button type="button" className="btn btn-outline-dark" onClick={() => rejectBuliding(data.id)}>Reject</button>
+                        <button type="button" className="btn btn-dark" onClick={() => approveBuliding(data.id)}>Approve</button>
                     </div>
                 </div>
             </div>
