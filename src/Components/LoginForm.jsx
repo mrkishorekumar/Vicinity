@@ -68,7 +68,7 @@ const LoginForm = () => {
             <div className="form-group">
                 <div>
                     <label htmlFor="password" className="form-label">Password</label>
-                    <input type="password" name="password" pattern=".{8,}" className="form-control" id="email" placeholder="Your Password"
+                    <input type="password" name="password" className="form-control" id="email" placeholder="Your Password"
                         required onChange={handleChange} value={data.password} />
                     <div className="invalid-feedback">
                         Please enter a valid Password for Signup.

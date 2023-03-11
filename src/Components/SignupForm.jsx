@@ -41,7 +41,7 @@ const SignupForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch({ type: "FETCH_START" })
-        axios.post(`${import.meta.env.VITE_SERVER_KEY}/users`, data)
+        axios.post(`${import.meta.env.VITE_SERVER_KEY}/customers`, data)
             .then((res) => {
                 dispatch({ type: "FETCH_SUCCESS", payload: res.data })
             })

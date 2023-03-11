@@ -1,12 +1,12 @@
 import React from 'react'
 
-function IndividualBuildingModel() {
+function IndividualBuildingModel({ data }) {
   return (
-    <div className="modal fade" id="buildingOwnerDashboard" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabIndex="-1">
+    <div className="modal fade" id={`buildingOwnerDashboard${data.id}`} aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabIndex="-1">
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
           <div className="modal-header">
-            <h1 className="modal-title fs-5" id="exampleModalToggleLabel">Modal 1</h1>
+            <h1 className="modal-title fs-5" id="exampleModalToggleLabel">Status : {data.verificationStatus}</h1>
             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div className="modal-body">
@@ -19,47 +19,41 @@ function IndividualBuildingModel() {
               </thead>
               <tbody>
                 <tr>
-                  <td>Full Name</td>
-                  <td>Otto</td>
-                </tr>
-                <tr>
-                  <td>Company Email</td>
-                  <td>thornton@gmail.com</td>
-                </tr>
-                <tr>
-                  <td>Phone Number</td>
-                  <td>987654321</td>
+                  <td>Name</td>
+                  <td>{data.name}</td>
                 </tr>
                 <tr>
                   <td>Street</td>
-                  <td>711-2880 Nulla St.</td>
+                  <td>{data.address.street}</td>
                 </tr>
                 <tr>
                   <td>Area</td>
-                  <td>Mankato</td>
+                  <td>{data.address.area}</td>
                 </tr>
                 <tr>
                   <td>City</td>
-                  <td>Mississippi</td>
+                  <td>{data.address.city}</td>
                 </tr>
                 <tr>
                   <td>State</td>
-                  <td>Mankato</td>
+                  <td>{data.address.state}</td>
                 </tr>
                 <tr>
                   <td>Country</td>
-                  <td>USA</td>
+                  <td>{data.address.country}</td>
                 </tr>
                 <tr>
-                  <td>Company PinCode</td>
-                  <td>5637401</td>
+                  <td>Company Pincode</td>
+                  <td>{data.address.pinCode}</td>
                 </tr>
               </tbody>
             </table>
           </div>
           <div className="modal-footer">
             <button className="btn btn-outline-dark">Delete</button>
-            <button className="btn btn-dark">Reapply</button>
+            {
+              data.verificationStatus === "REJECTED" && <button className="btn btn-dark">Reapply</button>
+            }
           </div>
         </div>
       </div>

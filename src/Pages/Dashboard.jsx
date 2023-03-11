@@ -35,9 +35,13 @@ function Dashboard() {
   return (
     <>
         <Navbar />
-        <AdminDashboard />
-        {/* <BuildingOwnerDashboard /> */}
-        <Footer />
+        {
+          state.data.data === "ADMIN" && <AdminDashboard />
+        }
+        {
+          state.data.data === "BUILDING_OWNER" && <BuildingOwnerDashboard />
+        }
+          <Footer />
     </>
   )
 }

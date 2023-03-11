@@ -16,10 +16,12 @@ function CarouselList({data}) {
                                 src={val.url}
                                 alt="First slide"
                             />
-                            <Carousel.Caption style={{backgroundColor : "rgba(255, 255, 255, 0.5)", borderRadius : "8px", color : "black"}}>
+                            {
+                            val.name === null ? <></> :<Carousel.Caption style={{backgroundColor : "rgba(255, 255, 255, 0.5)", borderRadius : "8px", color : "black"}}>
                                 <h3>{val.name}</h3>
                                 <p>{val.description}</p>
                             </Carousel.Caption>
+                            }
                         </Carousel.Item>
                     )
                 })

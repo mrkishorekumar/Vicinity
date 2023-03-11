@@ -16,7 +16,8 @@ const RegisterForm = () => {
 
     const [state, dispatch] = useReducer(reducerFunction, INITIAL_STATE)
 
-    const [data, setData] = useState({ name: "", email: "", password: "", phoneNumber: "",
+    const [data, setData] = useState(
+    { name: "", email: "", password: "", phoneNumber: "",
      address : {
         street : "",
         area : "",
@@ -24,7 +25,8 @@ const RegisterForm = () => {
         state : "",
         country : "",
         pinCode : ""
-    } })
+    } }
+    )
 
     const [err, setErr] = useState("")
 
@@ -41,7 +43,7 @@ const RegisterForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch({ type: "FETCH_START" })
-        axios.post(`${import.meta.env.VITE_SERVER_KEY}/building-owners`, data)
+        axios.post(`${import.meta.env.VITE_SERVER_KEY}/customers`, data)
             .then((res) => {
                 dispatch({ type: "FETCH_SUCCESS", payload: res.data })
                 if (res.data.status === "SUCCESS") {
@@ -182,7 +184,7 @@ const RegisterForm = () => {
             </div>
     
             <div className="d-flex justify-content-between w-100 mt-3">
-                <div><button type="submit" className="btn btn-dark">Register</button></div>
+                <div><button type="submit" className="btn btn-dark">{state.loading ? "Loading..." : "Register"}</button></div>
                 <div><Link className="btn btn-outline-dark" to="/login" role="button">Login</Link></div>
             </div>
         </form>
