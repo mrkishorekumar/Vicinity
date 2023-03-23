@@ -56,6 +56,7 @@ function Search() {
                 buildingName={val.name}
                 buildingDescription={val.description}
                 buildingId={val.id}
+                flag={false}
               />
             })
           }

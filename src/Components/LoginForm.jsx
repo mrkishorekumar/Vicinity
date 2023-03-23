@@ -82,7 +82,7 @@ const LoginForm = () => {
             }
             <div className="d-flex justify-content-between w-100 mt-3">
                 <div><button type="submit" className="btn btn-dark">{state.loading ? "Loading..." : "Login"}</button></div>
-                <div><Link className="btn btn-outline-dark" to="/signup" role="button">Signup</Link></div>
+                <div><Link className="btn btn-outline-dark" to="/forgotPassword" role="button">Forgot Password?</Link></div>
             </div>
         </form>
     )

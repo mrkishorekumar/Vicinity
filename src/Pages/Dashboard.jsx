@@ -7,6 +7,7 @@ import BuildingOwnerDashboard from '../Components/BuildingOwnerDashboard'
 import Footer from '../Components/Footer'
 import Navbar from '../Components/Navbar'
 import Loading from '../Components/Loading'
+import CustomerDashboard from '../Components/CustomerDashboard';
 
 function Dashboard() {
 
@@ -41,7 +42,10 @@ function Dashboard() {
         {
           state.data.data === "BUILDING_OWNER" && <BuildingOwnerDashboard />
         }
-          <Footer />
+        {
+          state.data.data === "CUSTOMER" && <CustomerDashboard />
+        }
+        <Footer />
     </>
   )
 }

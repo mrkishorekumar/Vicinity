@@ -26,8 +26,7 @@ function AdminDashboard() {
 
     const [buildingList, buildingSetAccount] = useState([])
 
-
-    useEffect(() => {
+    function fetchApi(){
         dispatch({ type: "FETCH_START" })
         axios.get(`${import.meta.env.VITE_SERVER_KEY}/building-owners/status/PENDING`, { headers: { Authorization: `Bearer ${Cookies.get('jwtKey')}` }})
           .then((res) => {
@@ -50,6 +49,11 @@ function AdminDashboard() {
                 buildingDispatch({ type: "FETCH_ERROR", payload: err.response.data })
             })
 
+    }
+
+
+    useEffect(() => {
+        fetchApi()
       },[])
 
 
@@ -86,7 +90,7 @@ function AdminDashboard() {
                 <div className="tab-pane fade" id="profile">
                     {
                         buildingList.loading ? <ApiLoading /> : buildingList.length === 0 ? <AllVerified content="Building" /> : buildingList.map((val) => {
-                            return <BuildingVerification key={val.id} data={val} arr={buildingList} />
+                            return <BuildingVerification fetchApi={fetchApi} key={val.id} data={val} arr={buildingList} />
                         })
                     }
                 </div>

@@ -2,7 +2,9 @@ import React, { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Loading from './Components/Loading'
 import ProtectedRoute from './Helper/ProtectedRoute'
+import ForgotPassword from './Pages/ForgotPassword'
 import IndividualBuilding from './Pages/IndividualBuilding'
+import ResetPassword from './Pages/ResetPassword'
 import Search from './Pages/Search'
 
 const HomePage = lazy(() => import('./Pages/Home'))
@@ -54,6 +56,16 @@ const App = () => {
       protected: false,
       component: <IndividualBuilding />,
       path: '/building/:id',
+    },
+    {
+      protected: false,
+      component: <ForgotPassword />,
+      path: '/forgotPassword',
+    },
+    {
+      protected: false,
+      component: <ResetPassword />,
+      path: '/reset_password',
     },
     // {
     //   protected: false,

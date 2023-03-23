@@ -27,13 +27,16 @@ export function photodataModification(data){
     })
 }
 
-function BuildingVerificationModal({data}) {
+function BuildingVerificationModal({data, fetchApi}) {
 
 
     const rejectBuliding = (id) => {
         axios.patch(`${import.meta.env.VITE_SERVER_KEY}/buildings/${id}/status/REJECTED`, { headers: { Authorization: `Bearer ${Cookies.get('jwtKey')}` }})
           .then((res) => {
-            console.log(res)
+            if(res.data.responseStatus === "SUCCESS"){
+                fetchApi()
+                alert(res.data.message)
+            }
           })
           .catch((err) => {
               console.log(err)
@@ -43,7 +46,10 @@ function BuildingVerificationModal({data}) {
     const approveBuliding = (id) => {
         axios.patch(`${import.meta.env.VITE_SERVER_KEY}/buildings/${id}/status/VERIFIED`, { headers: { Authorization: `Bearer ${Cookies.get('jwtKey')}` }})
           .then((res) => {
-            console.log(res)
+            if(res.data.responseStatus === "SUCCESS"){
+                fetchApi()
+                alert(res.data.message)
+            }
           })
           .catch((err) => {
               console.log(err)
@@ -132,8 +138,8 @@ function BuildingVerificationModal({data}) {
                     </div>
                     <div className="modal-footer">
                         {/* data-bs-dismiss="modal" */}
-                        <button type="button" className="btn btn-outline-dark" onClick={() => rejectBuliding(data.id)}>Reject</button>
-                        <button type="button" className="btn btn-dark" onClick={() => approveBuliding(data.id)}>Approve</button>
+                        <button type="button" className="btn btn-outline-dark" onClick={() => rejectBuliding(data.id)} data-bs-dismiss="modal">Reject</button>
+                        <button type="button" className="btn btn-dark" onClick={() => approveBuliding(data.id)} data-bs-dismiss="modal">Approve</button>
                     </div>
                 </div>
             </div>

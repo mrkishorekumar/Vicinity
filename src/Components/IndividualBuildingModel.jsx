@@ -1,6 +1,22 @@
+import axios from 'axios'
 import React from 'react'
+import Cookies from 'js-cookie'
 
-function IndividualBuildingModel({ data }) {
+function IndividualBuildingModel({ data, fetchApi }) {
+  
+  const deleteBuilding = () => {
+    axios.delete(`${import.meta.env.VITE_SERVER_KEY}/buildings/${data.id}`, { headers: { Authorization: `Bearer ${Cookies.get('jwtKey')}` }})
+    .then((res) => {
+      if(res.data.responseStatus === "SUCCESS"){
+        alert(res.data.responseStatus)
+        fetchApi()
+      }
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+
   return (
     <div className="modal fade" id={`buildingOwnerDashboard${data.id}`} aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabIndex="-1">
       <div className="modal-dialog modal-dialog-centered">
@@ -50,9 +66,12 @@ function IndividualBuildingModel({ data }) {
             </table>
           </div>
           <div className="modal-footer">
-            <button className="btn btn-outline-dark">Delete</button>
+            <button className="btn btn-outline-dark" data-bs-dismiss="modal" onClick={deleteBuilding}>Delete</button>
             {
               data.verificationStatus === "REJECTED" && <button className="btn btn-dark">Reapply</button>
+            }
+            {
+              data.verificationStatus === "VERIFIED" && <button className="btn btn-dark">Reapply</button>
             }
           </div>
         </div>

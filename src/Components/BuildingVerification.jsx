@@ -1,7 +1,7 @@
 import React from 'react'
 import BuildingVerificationModal from './BuildingVerificationModal'
 
-function BuildingVerification({data, arr}) {
+function BuildingVerification({data, arr, fetchApi}) {
     return (
         <>
             <div className="card mb-3">
@@ -16,7 +16,7 @@ function BuildingVerification({data, arr}) {
             </div>
             {
                 arr.map((val) => {
-                    return <BuildingVerificationModal key={val.id} data={val} />
+                    return <BuildingVerificationModal fetchApi={fetchApi} key={val.id} data={val} />
                 })
             }
         </>

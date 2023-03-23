@@ -9,7 +9,7 @@ function BuildingOwnerDashboard() {
 
   const [data, setData] = useState([])
 
-  useEffect(() => {
+  function fetchApi(){
     axios.get(`${import.meta.env.VITE_SERVER_KEY}/building-owners/buildings`, { headers: { Authorization: `Bearer ${Cookies.get('jwtKey')}` }})
       .then((res) => {
         setData(res.data.data)
@@ -17,6 +17,11 @@ function BuildingOwnerDashboard() {
       .catch((err) => {
         console.log(err)
       })
+  }
+
+
+  useEffect(() => {
+    fetchApi()
   },[])
 
   
@@ -43,7 +48,7 @@ function BuildingOwnerDashboard() {
                       <p className="card-text textOverflow" style={{ height: "100px" }}>{val.description}</p>
                     </div>
                   </div>
-                  <IndividualBuildingModel data={val} />
+                  <IndividualBuildingModel fetchApi={fetchApi} data={val} />
                   </Fragment>
                 )
               })

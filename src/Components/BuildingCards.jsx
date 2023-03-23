@@ -1,8 +1,48 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Cookies from 'js-cookie'
 
-const BuildingCards = ({ buildingImage, buildingName, buildingDescription, buildingId }) => {
+const BuildingCards = ({ buildingImage, buildingName, buildingDescription, buildingId, flag, like }) => {
+
+
+    const [state, setState] = useState(like)
+
+    const addLike = () => {
+        axios.patch(`${import.meta.env.VITE_SERVER_KEY}/customers/favourite-buildings/${buildingId}/like`, {}, { headers: { Authorization: `Bearer ${Cookies.get('jwtKey')}` }})
+          .then((res) => {
+              if(res.data.responseStatus === "SUCCESS"){
+                console.log("Liked")
+                setState(true)
+              }
+          })
+          .catch((err) => {
+              console.log(err)
+          })
+    }
+
+    const unLike = () => {
+        axios.patch(`${import.meta.env.VITE_SERVER_KEY}/customers/favourite-buildings/${buildingId}/unlike`, {}, { headers: { Authorization: `Bearer ${Cookies.get('jwtKey')}` }})
+          .then((res) => {
+              if(res.data.responseStatus === "SUCCESS"){
+                console.log("Liked")
+                setState(false)
+              }
+          })
+          .catch((err) => {
+              console.log(err)
+          })
+    }
+
+    const likeAndUnlike = (state) => {
+        if(state){
+            unLike()
+        }
+        else {
+            addLike()
+        }
+    }
+
     return (
         <div className="col">
             <div className="card shadow-sm">
@@ -18,7 +58,10 @@ const BuildingCards = ({ buildingImage, buildingName, buildingDescription, build
                             <Link to={`/building/${buildingId}`} type="button"
                                 className="btn btn-sm btn-outline-secondary">View</Link>
                                 {
-                                    Cookies.get('jwtKey') && <button type="button" className="btn btn-sm btn-outline-secondary">Like</button>
+                                    Cookies.get('jwtKey') && !flag  && <button type="button" className="btn btn-sm btn-outline-secondary" onClick={() => likeAndUnlike(state)}>{state ? "UnLike": "Like" }</button>
+                                }
+                                {
+                                    flag && state && <button type="button" className="btn btn-sm btn-outline-secondary" onClick={unLike}>Unlike</button>
                                 }
                         </div>
                         <small className="text-muted">New!</small>
