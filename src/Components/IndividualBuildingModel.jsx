@@ -67,12 +67,6 @@ function IndividualBuildingModel({ data, fetchApi }) {
           </div>
           <div className="modal-footer">
             <button className="btn btn-outline-dark" data-bs-dismiss="modal" onClick={deleteBuilding}>Delete</button>
-            {
-              data.verificationStatus === "REJECTED" && <button className="btn btn-dark">Reapply</button>
-            }
-            {
-              data.verificationStatus === "VERIFIED" && <button className="btn btn-dark">Reapply</button>
-            }
           </div>
         </div>
       </div>
